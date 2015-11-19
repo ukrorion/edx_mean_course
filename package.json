@@ -3,9 +3,12 @@
     "test" : "mocha test.js",
     "watch" : "gulp watch"
   },
-  "dependencies" : {
+  "devDependencies" : {
     "mocha" : "2.3.4",
     "gulp" : "3.9.0",
     "gulp-mocha" : "2.2.0"
+  },
+  "dependencies" : {
+    "mongoose" : "4.2.6"
   }
 }
