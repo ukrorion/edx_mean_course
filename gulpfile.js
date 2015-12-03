@@ -13,3 +13,12 @@ gulp.task('test', function () {
 gulp.task('watch', function () {
   gulp.watch('./*.js', ['test']);
 });
+
+gulp.task('run_all_test', function(){
+  gulp.
+    src('./spec/**/*.js').
+    pipe(mocha()).
+    on('error',function(){
+      this.emit('end');
+    });
+});
