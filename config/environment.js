@@ -26,5 +26,5 @@ module.exports = function(app){
   } else {
     environments.development(app);
   }
+
 };
-// TODO: Load environment in async mode

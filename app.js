@@ -8,5 +8,5 @@ routes(app);
 
 var port = 3000;
 app.listen(port, function(){
-  console.log("Application started listen port "+ port +" using "+this.env+" enviroment");
+  console.log("Application started listen port "+ port +" using "+ app.env +" enviroment");
 });
