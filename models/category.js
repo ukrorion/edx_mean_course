@@ -3,7 +3,7 @@
  */
 
 var mongoose = require('mongoose');
-var categorySchema = require('./config/schemas/category');
+var categorySchema = require('../db/schemas/category');
 
 var Category = mongoose.model('Category', categorySchema);
 
