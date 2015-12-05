@@ -1,4 +1,11 @@
 extends ../layout.jade
 
 block content
-  h1 My Article
+  h1 All categories
+  if categories.length > 0
+    ul
+      each category in categories
+        li= category
+  else
+    h4 No categories available
+  a(href='categories/new') Add new one
