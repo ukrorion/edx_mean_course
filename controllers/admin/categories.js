@@ -1,9 +1,9 @@
 
-var categoriesController = function(wagner){
+var categoriesAdminController = function(wagner){
   var index = wagner.invoke(function(Category){
     return function(req, res, next){
       Category.find({},function(err,docs){
-        res.render('categories/index');
+        res.render('admin/categories/index');
       });
     }
   });
@@ -13,4 +13,4 @@ var categoriesController = function(wagner){
   };
 };
 
-module.exports = categoriesController;
+module.exports = categoriesAdminController;
