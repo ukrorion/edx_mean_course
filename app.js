@@ -1,10 +1,11 @@
 var express = require('express');
 var environment = require('./config/environment');
 var routes = require('./config/routes');
+var wagner = require('wagner-core');
 var app = express();
 
-environment(app);
-routes(app);
+environment(app,wagner);
+routes(app,wagner);
 
 var port = 3000;
 app.listen(port, function(){

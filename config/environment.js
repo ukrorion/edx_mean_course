@@ -1,3 +1,8 @@
+// Load additional libraries
+require('../lib/extensions/string');
+var models_load = require('../config/models_loader');
+var mongoose = require('mongoose');
+
 var environments = {
   development : require('./environments/development'),
   production : require('./environments/production'),
@@ -16,7 +21,7 @@ var parse_arguments = function(){
   return arguments;
 };
 
-module.exports = function(app){
+module.exports = function(app,wagner){
   var app_args = parse_arguments();
 
   if(app_args.indexOf("test") > -1) {
@@ -24,7 +29,8 @@ module.exports = function(app){
   } else if(app_args.indexOf("production") > -1){
     environments.production(app);
   } else {
+    mongoose.connect('mongodb://localhost/edx_development');
     environments.development(app);
   }
-
+  models_load(wagner);
 };

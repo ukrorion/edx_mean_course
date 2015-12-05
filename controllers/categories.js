@@ -1,13 +1,16 @@
-var Category = require('../models/category');
 
-var categoriesController = function(){
-  var index = function(req, res, next){
-    res.send('Test sample');
-  };
+var categoriesController = function(wagner){
+  var index = wagner.invoke(function(Category){
+    return function(req, res, next){
+      Category.find({},function(err,docs){
+        res.render('categories/index');
+      });
+    }
+  });
 
   return {
     index : index
   };
 };
 
-module.exports = categoriesController();
+module.exports = categoriesController;
