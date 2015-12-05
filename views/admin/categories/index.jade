@@ -5,7 +5,7 @@ block content
   if categories.length > 0
     ul
       each category in categories
-        li= category
+        li= category._id
   else
     h4 No categories available
   a(href='categories/new') Add new one

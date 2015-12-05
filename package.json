@@ -16,6 +16,7 @@
     "wagner-core" : "0.2.0",
     "http-status" : "0.2.0",
     "morgan" : "1.6.1",
-    "jade" : "1.11.0"
+    "jade" : "1.11.0",
+    "body-parser" : "1.14.1"
   }
 }

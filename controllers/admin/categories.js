@@ -8,8 +8,27 @@ var categoriesAdminController = function(wagner){
     }
   });
 
+  var new_category = function(req, res, next){
+    res.render('admin/categories/new');
+  };
+
+  var create = wagner.invoke(function(Category){
+    return function(req, res, next){
+      var category = new Category({ _id: req.body._id });
+      category.save(function(err,category){
+        if(err){
+          res.end();
+        } else {
+          res.redirect('/admin/categories');
+        }
+      });
+    }
+  });
+
   return {
-    index : index
+    index : index,
+    new : new_category,
+    create : create
   };
 };
 
