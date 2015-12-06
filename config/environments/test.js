@@ -1,3 +1,5 @@
+var common_env = require('../../config/environments/common');
+
 module.exports = function(app){
-  app.env = "test";
+  common_env(app);
 };
