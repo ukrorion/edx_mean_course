@@ -1,6 +1,7 @@
 var assert = require('assert');
 var superagent = require('superagent');
 var application = require('../../../app');
+var mongoose = require('mongoose');
 
 var URL_ROOT = 'http://localhost:3000';
 
@@ -14,7 +15,7 @@ describe('categoriesAdminController', function() {
 
   after(function() {
     server.close(function(){
-      console.log('stop');
+      mongoose.connection.close();
     });
   });
 
