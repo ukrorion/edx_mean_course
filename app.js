@@ -5,20 +5,20 @@ var wagner = require('wagner-core');
 var app = express();
 
 
-module.export.load = function(enviroment){
-  app.env = enviroment || "development";
+module.exports.load = function(env){
+  app.set('env', env || "development");
   environment(app,wagner);
   routes(app,wagner);
 };
 
-module.export.server = function(port){
+module.exports.server = function(port){
   var port = port || 3000;
   return app.listen(port, function(){
-    console.log("Application started listen port "+ port +" using "+ app.env +" enviroment");
+    console.log("Application started listen port "+ port +" using "+ app.get('env') +" environment");
   });
 };
-module.export.app = app;
-module.export.wagner = wagner;
+module.exports.app = app;
+module.exports.wagner = wagner;
 
 
 
