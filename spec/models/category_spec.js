@@ -1,19 +1,8 @@
 var expect = require('expect');
-var application = require('../../app');
-var mongoose = require('mongoose');
+var preloader = require('../spec_helper');
 
 describe('Category', function(){
-
-  before(function() {
-    application.load('test');
-    wagner = application.wagner;
-    server = application.server(3000);
-  });
-
-  after(function(){
-    mongoose.connection.close();
-    server.close();
-  });
+  preloader.call(this);
 
   it('should be defined', function(){
     wagner.invoke(function(Category){
