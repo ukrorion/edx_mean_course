@@ -7,10 +7,12 @@ describe('Category', function(){
   before(function() {
     application.load('test');
     wagner = application.wagner;
+    server = application.server(3000);
   });
 
   after(function(){
     mongoose.connection.close();
+    server.close();
   });
 
   it('should be defined', function(){
