@@ -20,7 +20,6 @@ module.exports = function(wagner){
       wagner.factory(name, function(){
         return models[name];
       });
-      console.log('Model '+ name +' is loaded');
     } catch(err) {
       console.log(err);
     }
