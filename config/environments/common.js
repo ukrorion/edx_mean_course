@@ -1,6 +1,8 @@
 var bodyParser = require('body-parser');
+var express = require('express');
 
 module.exports = function(app){
+  app.use(express.static(process.cwd() + '/public'));
   app.use(require('morgan')("combined"));
   app.set('views', './views');
   app.set('view engine', 'jade');
