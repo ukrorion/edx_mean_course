@@ -2,7 +2,9 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 
 var path = {
-  scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js']
+  scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
+            './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js',
+            './spec/**/*.js']
 }
 
 gulp.task('watch', function () {
@@ -19,5 +21,3 @@ gulp.task('run_all_test', function(){
       error = true;
     });
 });
-
-

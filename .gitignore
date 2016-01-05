@@ -28,4 +28,4 @@ node_modules
 
 .idea/**
 .idea
-public/javascripts/vendor_lib/**
+public/vendor_lib/**
