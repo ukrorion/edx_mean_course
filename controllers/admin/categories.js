@@ -25,10 +25,17 @@ var categoriesAdminController = function(wagner){
     }
   });
 
+  var delete_category = wagner.invoke(function(Category) {
+    return function(req, res, next){
+      res.redirect('/admin/categories');
+    };
+  });
+
   return {
     index : index,
     new : new_category,
-    create : create
+    create : create,
+    delete: delete_category
   };
 };
 
