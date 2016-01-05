@@ -31,20 +31,25 @@ describe('categoriesAdminController', function() {
       if (error) {
         done(error);
       } else {
-        assert.equal(res.status, 200);
-        assert.equal(res.redirects, []);
+        expect(res.status).toEqual(200);
+        expect(res.text).toContain('Test 5');
+        expect(res.text).toContain('Test 2');
+        expect(res.redirects).toEqual([]);
         done();
       }
     });
   });
 
-  it('should delete category', function(done) {
+  it('should delete category and redirect to index categories page', function(done) {
     superagent.
-    del(URL_ROOT+'/admin/categories/1').end(function(error,res) {
+    del(URL_ROOT+'/admin/categories/Test 1').end(function(error,res) {
       if(error){
         done(error);
       } else {
-        assert.equal(res.status, 302);
+        expect(res.redirects.length).toBeGreaterThan(0);
+        expect(res.text).toBeA('string');
+        expect(res.text).toContain('Test 5');
+        expect(res.text).toNotContain('Test 1');
         done();
       }
     });
