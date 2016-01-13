@@ -1,0 +1,26 @@
+{
+  "name": "edx_mean_course",
+  "description": "edx_mean_course",
+  "main": "",
+  "authors": [
+    "Alexander Ostach <ukrorion@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ukrorion/edx_mean_course",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor_lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6"
+  }
+}
