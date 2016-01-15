@@ -40,7 +40,7 @@ describe('categoriesAdminController', function() {
     });
   });
 
-  it('should delete category and redirect to index categories page', function(done) {
+  xit('should delete category and redirect to index categories page', function(done) {
     superagent.
     del(URL_ROOT+'/admin/categories/Test 1').end(function(error,res) {
       if(error){

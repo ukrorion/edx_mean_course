@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 var categorySchema = require('../db/schemas/category');
 
