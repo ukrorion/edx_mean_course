@@ -7,4 +7,7 @@ module.exports = function(app, wagner){
   admin.post('/categories/create', categoriesAdminController.create);
   admin.delete('/categories/:id', categoriesAdminController.delete);
   app.use('/admin', admin);
+
+  var homeController = require('../controllers/home_controller')(wagner);
+  app.get('/', homeController.index);
 };
