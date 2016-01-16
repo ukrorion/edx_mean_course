@@ -32,6 +32,11 @@ describe('User', function(){
   });
 
   describe('should validate', function(){
+    beforeEach(function(done){
+      wagner.invoke(function(User) {
+        User.remove({}, done);
+      });
+    });
     it('email on presence and to mach specific pattern', function(){
       wagner.invoke(function(User){
         var user = new User(user_factory.user);
@@ -42,6 +47,20 @@ describe('User', function(){
         user.email = 'testtestcom';
         errors = user.validateSync().errors;
         expect(errors.email.kind).toBe('regexp');
+      });
+    });
+
+    it('email on uniqueness', function(done){
+      wagner.invoke(function(User){
+        var user1 = new User(user_factory.user);
+        var user2 = new User(user_factory.user);
+        user1.save(function(err){
+          user2.save(function(err){
+            expect(err.name).toBe('MongoError');
+            expect(err.message).toContain('uplicate key error index');
+            done();
+          });
+        });
       });
     });
 
