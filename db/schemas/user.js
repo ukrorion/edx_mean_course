@@ -4,12 +4,12 @@ var email_pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))
 
 var userSchema = {
   email : { type: String, trim: true, match: email_pattern, required: true, index: { unique: true } },
-  password : { type: String, required: true },
+  password : { type: String, required: true, minlength: 6 },
   first_name : { type: String, trim: true, required: true },
   last_name : { type: String, trim: true, required: true },
   photo : imageSchema,
   articles : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
-  created_at: { type: Date, default: Date.now }
+  created_at: { type: Date, default: Date.now() }
 };
 
 module.exports  = new mongoose.Schema(userSchema);
