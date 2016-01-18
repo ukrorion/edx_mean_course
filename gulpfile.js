@@ -21,3 +21,5 @@ gulp.task('run_all_test', function(){
       error = true;
     });
 });
+
+gulp.task('default', ['run_all_test']);
