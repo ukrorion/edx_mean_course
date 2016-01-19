@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
+var Server = require('karma').Server;
 
 var path = {
   scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
@@ -23,6 +24,23 @@ gulp.task('run_all_test', function(){
       if (error){ process.exit(1); }
       process.exit();
     });
+});
+
+gulp.task('tests_karma', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, function(){
+    done();
+  }).start();
+});
+
+gulp.task('tdd_karma', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js'
+  }, function(){
+    done();
+  }).start();
 });
 
 gulp.task('default', ['run_all_test']);
