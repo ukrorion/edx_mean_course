@@ -9,10 +9,21 @@ var path = {
 };
 
 gulp.task('watch', function () {
-  gulp.watch(path.scripts, ['run_all_test']);
+  gulp.watch(path.scripts, ['run_all_tests']);
 });
 
-gulp.task('run_all_test', function(){
+gulp.task('run_all_tests', function(){
+  var error = false;
+  gulp.
+    src('./spec/**/*.js').
+    pipe(mocha()).
+    on('error',function(){
+      this.emit(end);
+      error = true;
+    });
+});
+
+gulp.task('all_tests', ['run_karma_tests'], function(){
   var error = false;
   gulp.
     src('./spec/**/*.js').
@@ -26,7 +37,7 @@ gulp.task('run_all_test', function(){
     });
 });
 
-gulp.task('tests_karma', function (done) {
+gulp.task('run_karma_tests', function (done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
@@ -43,4 +54,4 @@ gulp.task('tdd_karma', function (done) {
   }).start();
 });
 
-gulp.task('default', ['run_all_test']);
+gulp.task('default', ['all_tests']);
