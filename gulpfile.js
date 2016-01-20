@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var Server = require('karma').Server;
+var nodemon = require('gulp-nodemon');
+
 
 var path = {
   scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
@@ -53,5 +55,14 @@ gulp.task('tdd_karma', function (done) {
     done();
   }).start();
 });
+
+gulp.task('start_server', function () {
+  nodemon({
+    script: 'server.js'
+  , ext: 'js html jade css json'
+  }).on('restart', function () {
+    console.log('\nServer restarted!\n')
+  })
+})
 
 gulp.task('default', ['all_tests']);
