@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
-var userSchema = require('../db/schemas/user');
+var userSchema = require('../db/schemas/user').userSchema;
+var default_role = require('../db/schemas/user').default_role;
 
-var Category = mongoose.model('User', userSchema);
+userSchema.statics.default_role = function(){
+  return default_role;
+};
 
-module.exports = Category;
+var User = mongoose.model('User', userSchema);
+module.exports = User;

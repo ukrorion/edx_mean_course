@@ -31,6 +31,13 @@ describe('User', function(){
     });
   });
 
+  it('should has default role', function(){
+    wagner.invoke(function(User){
+      var user = new User(user_factory.user);
+      expect(user.role).toBe(User.default_role());
+    });
+  });
+
   describe('should validate', function(){
     beforeEach(function(done){
       wagner.invoke(function(User) {
