@@ -1,9 +1,18 @@
 doctype html
-html(ng-app)
+html(ng-app="edx-app")
   head
     title Edx MEAN course
     link(rel='stylesheet', href='/vendor_lib/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/global.css')
     script(src='/vendor_lib/angular/angular.js')
+    script(src="/vendor_lib/angular-route/angular-route.min.js")
+    script(src='/vendor_lib/angular-resource/angular-resource.min.js')
+    script(src='/vendor_lib/angular-sanitize/angular-sanitize.min.js')
+    script(src='/vendor_lib/angular-cookies/angular-cookies.min.js')
+    script(src='/javascripts/app/app.js')
+    script(src='/javascripts/app/controllers/navigation_controller.js')
+    script(src='/javascripts/app/controllers/articles_controller.js')
+    script(src='/javascripts/app/controllers/blogs_controller.js')
+    script(src='/javascripts/app/controllers/news_controller.js')
   body
     block content

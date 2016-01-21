@@ -1,0 +1,11 @@
+<section id="articles" class="row">
+  <h2 class="hidden">::Articles::</h2>
+  <article class="article col-lg-10 col-md-10 col-md-offset-1" ng-repeat="article in articles">
+    <h2>{{article.title}}</h2>
+    <section class="short_info">
+      <h3><em>Author:</em>{{article.author}}</h3>
+      <time>{{article.created_at}}</time>
+    </section>
+    <p>{{article.content}}</p>
+  </article>
+</section>
