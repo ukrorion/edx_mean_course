@@ -1,3 +1,6 @@
+body > section.container {
+  margin-top: 50px;
+}
 .article .short_info {
   margin: 10px 0px;
   padding: 0px;
@@ -17,4 +20,15 @@
 
 .article h2{
 
+}
+
+footer {
+  background-color: #494141;
+  color: white;
+  padding-top: 20px;
+  border-radius: 5px 5px 0 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
 }
