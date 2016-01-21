@@ -5,6 +5,6 @@ block content
     header
       nav(class="navbar navbar-default" ng-controller="navigation_controller")
         ul(class="nav navbar-nav pull-right")
-          li(ng-repeat="link in links")
-            a(href ng-href="/#/{{link.url}}") {{link.name}}
+          li(ng-repeat="link in links"  ng-class="{'active':is_active('{{link.url}}')}")
+            a(href ng-href="/#{{link.url}}") {{link.name}}
     div(class="content" ng-view="")

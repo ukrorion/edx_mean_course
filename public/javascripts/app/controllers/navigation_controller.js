@@ -1,8 +1,11 @@
 angular.module('edx-app')
-  .controller('navigation_controller', ['$scope', function($scope) {
+  .controller('navigation_controller', function($scope, $location) {
     $scope.links = [
-      {name: "Home", url:""},
-      {name: "Blog", url:"blogs"},
-      {name: "News", url:"news"}
+      {name: "Home", url:"/"},
+      {name: "Blog", url:"/blogs"},
+      {name: "News", url:"/news"}
     ];
-  }])
+    $scope.is_active = function(path){
+      return path === $location.path();
+    }
+  })
