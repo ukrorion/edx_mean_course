@@ -3,8 +3,5 @@ extends ../layout.jade
 block content
   div(class="container")
     header
-      nav(class="navbar navbar-default" ng-controller="navigation_controller")
-        ul(class="nav navbar-nav pull-right")
-          li(ng-repeat="link in links"  ng-class="{'active':is_active('{{link.url}}')}")
-            a(href ng-href="/#{{link.url}}") {{link.name}}
+      navbar
     div(class="content" ng-view="")
