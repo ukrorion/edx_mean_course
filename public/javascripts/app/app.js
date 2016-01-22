@@ -1,7 +1,7 @@
 angular.module('edx-app',[
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
+  // 'ngCookies',
+  // 'ngResource',
+  // 'ngSanitize',
   'ngRoute'
 ]).
   config(function($routeProvider) {
