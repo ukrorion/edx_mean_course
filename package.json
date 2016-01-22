@@ -4,6 +4,8 @@
     "watch": "gulp watch"
   },
   "devDependencies": {
+  },
+  "dependencies": {
     "bower": "^1.7.1",
     "expect": "1.13.0",
     "gulp": "3.9.0",
@@ -14,9 +16,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.1",
     "mocha": "2.3.4",
-    "superagent": "1.4.0"
-  },
-  "dependencies": {
+    "superagent": "1.4.0",
     "mongoose": "4.2.6",
     "express": "4.13.3",
     "wagner-core": "0.2.0",
