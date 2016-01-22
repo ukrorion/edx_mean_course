@@ -18,5 +18,9 @@ angular.module('edx-app',[
         templateUrl: '/javascripts/app/views/news.html',
         controller: 'news_controller'
       })
+      .when('/sing_up',{
+        templateUrl: 'javascripts/app/views/sign_up.html',
+        controller: 'sign_up_controller'
+      })
 
   });

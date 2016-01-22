@@ -1,7 +1,12 @@
 extends ../layout.jade
 
 block content
-  div(class="container")
-    header
-      navbar
-    div(class="content" ng-view="")
+  header(class="row")
+    navbar
+  section(class="container")
+    div(class="content row" ng-view="")
+  footer(class="row")
+    section(class="col-lg-4")
+    section(class="col-lg-4 text-center")
+      |© 2016 Nulla quis lorem ut libero malesuada feugiat.
+    section(class="col-lg-4")
