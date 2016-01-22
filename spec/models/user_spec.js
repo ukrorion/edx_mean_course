@@ -95,6 +95,16 @@ describe('User', function(){
         expect(errors.password.kind).toBe('minlength');
       });
     });
+
+    it('role if it is accessible for the user (exists in the app)', function(){
+      wagner.invoke(function(User){
+        var user = new User(user_factory.user);
+        var errors;
+        user.role = 'blahblahblahblah';
+        errors = user.validateSync().errors;
+        expect(errors.role.kind).toBe('not_exist');
+      });
+    })
   });
 
 });
