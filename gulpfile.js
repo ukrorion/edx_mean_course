@@ -25,29 +25,6 @@ gulp.task('run_all_tests', function(){
     });
 });
 
-gulp.task('all_tests', ['run_karma_tests'], function(){
-  var error = false;
-  gulp.
-    src('./spec/**/*.js').
-    pipe(mocha()).
-    on('error',function(){
-      error = true;
-    })
-    .on('end', function () {
-      if (error){ process.exit(1); }
-      process.exit();
-    });
-});
-
-gulp.task('run_karma_tests', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, function(){
-    done();
-  }).start();
-});
-
 gulp.task('tdd_karma', function (done) {
   new Server({
     configFile: __dirname + '/karma.conf.js'
@@ -64,5 +41,30 @@ gulp.task('start_server', function () {
     console.log('\nServer restarted!\n')
   })
 })
+
+// Tasks for Travis CI
+var build_faild = false;
+gulp.task('run_karma_tests', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, function(exitCode){
+    if(exitCode)
+      build_faild = true;
+    done();
+  }).start();
+});
+
+gulp.task('all_tests', ['run_karma_tests'], function(done){
+  gulp.
+    src('./spec/**/*.js').
+    pipe(mocha()).
+    on('error',function(){
+      build_faild = true;
+    })
+    .on('end', function () {
+      done(build_faild);
+    });
+});
 
 gulp.task('default', ['all_tests']);
