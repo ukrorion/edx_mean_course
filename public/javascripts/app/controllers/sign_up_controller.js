@@ -4,6 +4,8 @@ angular.module('edx-app')
     $scope.password = '';
     $scope.first_name = '';
     $scope.last_name = '';
+    $scope.show_alert = false;
+
     $scope.submit = function(){
       $scope.info = 'Form was submited!'
       $scope.show_alert = true;
