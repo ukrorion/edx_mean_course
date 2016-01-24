@@ -7,6 +7,7 @@ angular.module('edx-app')
       {name: "Sing Up", url:"/sing_up"}
     ];
     $scope.is_active = function(path){
-      return path === $location.path();
+      var matcher = new RegExp('^'+path,"i");
+      return $location.path().match(matcher) != null;
     }
   })
