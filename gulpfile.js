@@ -19,7 +19,7 @@ gulp.task('run_all_tests', function(){
   gulp.
     src('./spec/**/*.js').
     pipe(mocha()).
-    on('error',function(){
+    on('error',function(end){
       this.emit(end);
       error = true;
     });
