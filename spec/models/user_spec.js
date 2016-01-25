@@ -59,18 +59,52 @@ describe('User', function(){
 
   describe('methods compare_password', function() {
 
-    before(function(done){
+    beforeEach(function(done){
       wagner.invoke(function(User){
         new User(test_user).save(done);
       });
     });
 
-    it('should compare saved and entered password to authenticate user', function(done){
+    it('should find user by email and check if password correct', function(done){
       wagner.invoke(function(User){
-        User.findOne({'email': test_user.email}, function(err,user){
+        var credential = {
+          email: test_user.email,
+          password: test_user.password
+        }
+        User.check_credential(credential, function(err,user){
           if(err)
             done(err)
-          expect(user.compare_password(test_user.password)).toBeTruthy();
+          expect(user.email).toEqual(test_user.email);
+          done();
+        });
+      });
+    });
+
+    it('should send error \'not_authorized\' if credential is wrong', function(done){
+      wagner.invoke(function(User){
+        var credential = {
+          email: test_user.email,
+          password: 'wrong password'
+        }
+        User.check_credential(credential, function(err,user){
+          expect(user).toEqual(null);
+          expect(err).toExist();
+          expect(err.message).toEqual('not_authorized')
+          done();
+        });
+      });
+    });
+
+    it('should send error \'not_found\' if user does not exist', function(done){
+      wagner.invoke(function(User){
+        var credential = {
+          email: "example@example.com",
+          password: 'wrong password'
+        }
+        User.check_credential(credential, function(err,user){
+          expect(user).toEqual(null);
+          expect(err).toExist();
+          expect(err.message).toEqual('not_found')
           done();
         });
       });
