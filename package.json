@@ -23,7 +23,6 @@
     "mocha": "2.3.4",
     "mongoose": "4.2.6",
     "morgan": "1.6.1",
-    "superagent": "1.4.0",
-    "wagner-core": "0.2.0"
+    "superagent": "1.4.0"
   }
 }

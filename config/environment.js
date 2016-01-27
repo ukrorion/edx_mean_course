@@ -1,6 +1,5 @@
 // Load additional libraries
 require('../lib/extensions/string');
-var models_load = require('../config/models_loader');
 var mongoose = require('mongoose');
 
 var environments = {
@@ -9,7 +8,7 @@ var environments = {
   test : require('./environments/test')
 };
 
-module.exports = function(app,wagner){
+module.exports = function(app){
 
   if(!app.get("env")){
     throw new Error('Application did not load environment;')
@@ -27,5 +26,4 @@ module.exports = function(app,wagner){
       break;
   }
   mongoose.connect('mongodb://localhost/edx_'+app.get('env'));
-  models_load(wagner);
 };

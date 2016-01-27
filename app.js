@@ -1,14 +1,13 @@
 var express = require('express');
 var environment = require('./config/environment');
 var routes = require('./config/routes');
-var wagner = require('wagner-core');
 var app = express();
 
 
 module.exports.load = function(env){
   app.set('env', env || "development");
-  environment(app,wagner);
-  routes(app,wagner);
+  environment(app);
+  routes(app);
 };
 
 module.exports.server = function(port){
@@ -18,103 +17,3 @@ module.exports.server = function(port){
   });
 };
 module.exports.app = app;
-module.exports.wagner = wagner;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

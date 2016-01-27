@@ -8,7 +8,6 @@ global.before(function() {
   URL_ROOT = 'http://localhost:3000';
 
   application.load('test');
-  wagner = application.wagner;
   server = application.server(3000);
 });
 

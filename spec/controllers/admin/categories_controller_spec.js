@@ -1,26 +1,24 @@
+var Category = require('../../../models/category');
+
 describe('categoriesAdminController', function() {
   before(function(done) {
     var names = [{_id: "Test 1"}, {_id: "Test 2"}, {_id: "Test 3"}, {_id: "Test 4"}, {_id: "Test 5"}];
-    wagner.invoke(function(Category){
-      Category.create(names, function(err, categoies) {
-        if(err){
-          done(err);
-        } else {
-          done();
-        }
-      });
+    Category.create(names, function(err, categoies) {
+      if(err){
+        done(err);
+      } else {
+        done();
+      }
     });
   });
 
   after(function(done){
-    wagner.invoke(function(Category){
-      Category.remove(function(err,removed){
-        if(err){
-          done(err);
-        } else {
-          done();
-        }
-      });
+    Category.remove(function(err,removed){
+      if(err){
+        done(err);
+      } else {
+        done();
+      }
     });
   });
 
