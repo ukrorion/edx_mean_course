@@ -7,7 +7,7 @@ var nodemon = require('gulp-nodemon');
 var path = {
   scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
             './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js',
-            './spec/**/*.js']
+            './spec/**/*.js', './middleware/**/*.js']
 };
 
 gulp.task('watch', function () {
@@ -20,8 +20,8 @@ gulp.task('run_all_tests', function(){
     src('./spec/**/*.js').
     pipe(mocha()).
     on('error',function(end){
+      console.error(end);
       this.emit(end);
-      error = true;
     });
 });
 

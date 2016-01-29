@@ -3,7 +3,6 @@ var categoriesAdminController = require('../controllers/admin/categories_control
 var homeController = require('../controllers/home_controller');
 
 module.exports = function(app){
-  console.log(categoriesAdminController.index);
   admin.get('/categories', categoriesAdminController.index);
   admin.get('/categories/new', categoriesAdminController.new);
   admin.post('/categories/create', categoriesAdminController.create);

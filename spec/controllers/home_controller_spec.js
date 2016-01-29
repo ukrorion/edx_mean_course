@@ -21,4 +21,19 @@ describe('homeController', function() {
     });
   });
 
+  it('response should contain additional http headers', function(done) {
+    superagent.
+    get(URL_ROOT).
+    end(function(error, res) {
+      if (error) {
+        done(error);
+      } else {
+        expect(res.header['access-control-allow-origin']).toEqual('*');
+        expect(res.header['access-control-allow-methods']).toEqual('GET, POST');
+        expect(res.header['access-control-allow-headers']).toEqual('X-Requested-With,content-type, Authorization');
+        done();
+      }
+    });
+  })
+
 });

@@ -12,7 +12,8 @@ var userSchema = {
   photo : imageSchema,
   articles : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
   created_at: { type: Date, default: Date.now() },
-  role: {type: String, default: default_role}
+  role: {type: String, default: default_role}, 
+  token: {type: String}
 };
 
 module.exports.userSchema = new mongoose.Schema(userSchema);

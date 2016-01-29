@@ -8,4 +8,5 @@ module.exports = function(app){
   app.set('view engine', 'jade');
   app.use(bodyParser.json()); // support json encoded bodies
   app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+  app.use(require('../../middleware/token_auth').set_response_headers);
 };
