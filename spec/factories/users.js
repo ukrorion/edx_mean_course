@@ -7,6 +7,7 @@ module.exports = {
     last_name : 'Bond',
     photo : image_factory.image,
     articles : [],
-    created_at: Date.now()
+    created_at: Date.now(),
+    token: 'sjagjioaitopankddsafhdjfakdfljaskbfxnbJHDhskdhsbc'
   }
 };
