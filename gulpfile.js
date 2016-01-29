@@ -6,8 +6,7 @@ var nodemon = require('gulp-nodemon');
 
 var path = {
   scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
-            './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js',
-            './spec/**/*.js', './middleware/**/*.js']
+            './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js', './spec/**/*.js', './middleware/**/*.js']
 };
 
 var errors = [];
