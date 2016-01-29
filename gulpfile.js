@@ -7,7 +7,15 @@ var nodemon = require('gulp-nodemon');
 var path = {
   scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
             './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js',
-            './spec/**/*.js']
+            './spec/**/*.js', './middleware/**/*.js']
+};
+
+var errors = [];
+var show_errors = function(errs){
+  errs.forEach(function(error,index) {
+    console.error(index+1 + ') ' + error);
+    console.log('\n-------------------------------------------------------------------------\n');
+  })
 };
 
 gulp.task('watch', function () {
@@ -19,9 +27,14 @@ gulp.task('run_all_tests', function(){
   gulp.
     src('./spec/**/*.js').
     pipe(mocha()).
-    on('error',function(end){
-      this.emit(end);
-      error = true;
+    on('error',function(err){
+      errors.push(err);
+    }).
+    on('end',function(){
+      if(errors.length > 0) {
+        show_errors(errors);
+        errors = [];
+      }
     });
 });
 
@@ -60,10 +73,14 @@ gulp.task('all_tests', ['run_karma_tests'], function(done){
     src('./spec/**/*.js').
     pipe(mocha()).
     on('error',function(error){
-      console.error(error);
+      errors.push(error);
       build_faild = true;
     })
     .on('end', function () {
+      if(errors.length > 0) {
+        show_errors(errors);
+        errors = [];
+      }
       done(build_faild);
     });
 });
