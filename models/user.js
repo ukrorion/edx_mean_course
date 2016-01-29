@@ -3,6 +3,8 @@ var userSchema = require('../db/schemas/user').userSchema;
 var default_role = require('../db/schemas/user').default_role;
 var accessible_roles = require('../db/schemas/user').accessible_roles;
 var bcrypt = require('bcryptjs');
+var jwt = require("jsonwebtoken");
+var fs = require('fs');
 var SALT_WORK_FACTOR = 10;
 
 userSchema.path('role').validate(function(value){
@@ -20,6 +22,18 @@ userSchema.pre('save', function(next){
       user.password = hash;
       next();
     })
+  });
+});
+
+userSchema.pre('save', function(next){
+  var user = this;
+  fs.readFile('test-user-cert.pem', function(err, cert) {
+    if(err) throw err;
+    var token = jwt.sign({password: user.password, email: user.email}, cert);
+    if(!token)
+      throw new Error('Token was not generated');
+    user.token = token;
+    next();
   });
 });
 
