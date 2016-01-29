@@ -3,8 +3,7 @@ var User = require("../../models/user.js");
 describe('User', function(){
 
   before(function(){
-    user_factory = require('./../factories/users');
-    test_user = user_factory.user;
+    test_user =require('./../factories/users').user;
   });
 
   afterEach(function(done){
@@ -22,11 +21,13 @@ describe('User', function(){
   it('should have specific fields', function(){
     var user = new User(test_user);
     expect(user.email).toBeA('string');
+    expect(user.password).toBeA('string');
     expect(user.first_name).toBeA('string');
     expect(user.last_name).toBeA('string');
     expect(user.articles).toBeAn('array');
     expect(user.photo).toBeAn('object');
     expect(user.created_at).toBeAn('object');
+    expect(user.token).toBeA('string');
   });
 
   it('should be valid', function(){
