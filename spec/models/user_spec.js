@@ -50,6 +50,18 @@ describe('User', function(){
     });
   });
 
+  it('should generate token befor create user', function(done){
+    var user = new User(test_user);
+    user.token = null;
+    user.save(function(err){
+      if (err)
+        return done(err);
+      expect(user.token).toNotEqual(null);
+      expect(user.token).toBeA('string');
+      done();
+    });
+  });
+
   describe('methods compare_password', function() {
 
     beforeEach(function(done){

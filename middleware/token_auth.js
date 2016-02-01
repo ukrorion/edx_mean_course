@@ -22,9 +22,11 @@ TokenAuthenticate.prototype.authenticate = function(req, res, next) {
 TokenAuthenticate.prototype.ensure_authorized = function (req, res, next) {
   this.User.findOne({token: req.token}, function(err, user) {
     if(err) {
+      req.user = '';
       next(err);
     } else {
-
+      req.user = user;
+      next();
     }
   });
 }
