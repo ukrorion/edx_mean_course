@@ -55,6 +55,32 @@ describe('TokenAuthenticate middleware', function () {
         done();
       });
     });
-
   });
+
+  describe('ensure_authorized method', function () {
+    before(function(done){
+      test_user =require('./../factories/users').user;
+      request = {};
+      User.create(test_user, function(err,user){
+        if(err) done(err);
+        request.token = user.token;
+        done();
+      })
+    });
+
+    after(function(done){
+      User.remove({}, function(){ done(); });
+    });
+
+    it('should check if user is authorized by token', function (done) {
+      token_auth.ensure_authorized(request, {}, function(err){
+        if(err) done(err);
+        expect(request.user).toBeA(User);
+        expect(request.user.token).toEqual(request.token);
+        expect(request.user.email).toEqual(test_user.email);
+        done();
+      });
+    });
+  });
+
 });
