@@ -2,11 +2,13 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var Server = require('karma').Server;
 var nodemon = require('gulp-nodemon');
+var istanbul = require('gulp-istanbul');
 
 
 var path = {
   scripts: ['./config/**/*.js', './controllers/**/*.js', './helpers/**/*.js',
-            './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js', './spec/**/*.js', './middleware/**/*.js']
+            './models/**/*.js', './lib/**/*.js', './db/**/*.js', './views/**/*.js',
+            './spec/**/*.js', './middleware/**/*.js']
 };
 
 var errors = [];
@@ -25,7 +27,12 @@ gulp.task('run_all_tests', function(){
   var error = false;
   gulp.
     src('./spec/**/*.js').
-    pipe(mocha()).
+    pipe(mocha({reporter: 'spec'})).
+    // pipe(istanbul.writeReports({
+    //   dir: './coverage',
+    //   reporters: [ 'html' ],
+    //   reportOpts: { dir: './coverage'}
+    // })).
     on('error',function(err){
       errors.push(err);
     }).

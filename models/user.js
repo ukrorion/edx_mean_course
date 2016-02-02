@@ -27,6 +27,7 @@ userSchema.pre('save', function(next){
 
 userSchema.pre('save', function(next){
   var user = this;
+  if(!user.isNew) next();
   fs.readFile('test-user-cert.pem', function(err, cert) {
     if(err) throw err;
     var token = jwt.sign({password: user.password, email: user.email}, cert);

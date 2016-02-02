@@ -50,16 +50,55 @@ describe('User', function(){
     });
   });
 
-  it('should generate token befor create user', function(done){
-    var user = new User(test_user);
-    user.token = null;
-    user.save(function(err){
-      if (err)
-        return done(err);
-      expect(user.token).toNotEqual(null);
-      expect(user.token).toBeA('string');
-      done();
+  describe('token', function () {
+
+    it('should be generated befor create user', function(done){
+      var user = new User(test_user);
+      user.token = null;
+      user.save(function(err){
+        if (err)
+          return done(err);
+        expect(user.token).toNotEqual(null);
+        expect(user.token).toBeA('string');
+        done();
+      });
     });
+
+    it('should not be changed on updating user', function (done) {
+      var user = new User(test_user);
+      user.save(function(err){
+        if (err) done(err);
+        var id = user._id;
+        User.findOneAndUpdate({_id: id}, { $set: {email: "example@example.com"}}, {new:true}, function(err, new_user) {
+          if (err) done(err);
+          expect(new_user.email).toNotEqual(user.email);
+          expect(new_user._id).toEqual(id);
+          expect(new_user.token).toEqual(user.token);
+          expect(new_user.password).toEqual(user.password);
+          done();
+        });
+      });
+    });
+
+    it('should not be changed on updating using save method', function (done) {
+      var user = new User(test_user);
+      user.save(function(err){
+        if (err) done(err);
+        var id = user._id;
+        User.findOne({_id: id}, function(err, new_user) {
+          if (err) done(err);
+          new_user.email = "example@example.com"
+          new_user.save(function(err) {
+            if(err) done(err);
+            expect(new_user.email).toNotEqual(user.email);
+            expect(new_user._id).toEqual(id);
+            expect(new_user.token).toEqual(user.token);
+            done();
+          })
+        });
+      });
+    });
+
   });
 
   describe('methods compare_password', function() {
