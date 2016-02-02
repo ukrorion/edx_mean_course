@@ -38,6 +38,13 @@ describe('Controller: NavigationController', function () {
       expect(scope.is_active('/test')).toBeFalsy();
     })
 
+    it('should return true for only one link', function () {
+      location.path('/test');
+      expect(scope.is_active('/test')).toBeTruthy();
+      expect(scope.is_active('/')).toBeFalsy();
+      expect(scope.is_active('/home')).toBeFalsy();
+    });
+
   });
 
 });
