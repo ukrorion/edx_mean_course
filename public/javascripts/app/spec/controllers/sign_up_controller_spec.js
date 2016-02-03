@@ -1,12 +1,15 @@
 'use strict';
 
 describe('Controller: SignUpController', function () {
-  var scope, $httpBackend, form_data;
+  var scope, $httpBackend, form_data, req_handler, rootScope;
 
   beforeEach(module('edx-app'));
   beforeEach(inject(function ($controller, $rootScope, $localStorage, _$httpBackend_) {
     scope = $rootScope.$new();
+    rootScope = $rootScope;
+    expect.spyOn(rootScope, '$broadcast');
     $httpBackend = _$httpBackend_;
+    req_handler = $httpBackend.when('POST', '/sing_up').respond({email: 'example@example.com'});
     form_data = {
       email: 'example@example.com',
       password: 'password',
@@ -22,16 +25,30 @@ describe('Controller: SignUpController', function () {
   describe('submit', function () {
     it('should change alert state to true', function() {
       expect(scope.show_alert).toBe(false);
+      $httpBackend.expectPOST('/sign_up').respond();
       scope.submit();
+      $httpBackend.flush();
       expect(scope.show_alert).toBe(true);
     });
 
-    it('should send data to server and get user token to auth user', function () {
+    it('should post data to server', function () {
+      scope.email = 'example@example.com';
+      scope.password = 'password';
+      scope.first_name = 'John';
+      scope.last_name = 'Dou';
+      req_handler.respond(200, '');
+      $httpBackend.expectPOST('/sign_up', form_data).respond(200, '');
       scope.submit();
-      $httpBackend.expectPOST('/sign_up', form_data, function(header){
-        return headers.Authorization === 'Bearssfsdffsdfaff';
-      }).respond({'user':'example@example.com'});
+      $httpBackend.flush();
     });
+
+    it('should broadcast \'user_created\' event on success responce', function(){
+      req_handler.respond(200, '');
+      $httpBackend.expectPOST('/sign_up').respond(200, '');
+      scope.submit();
+      $httpBackend.flush();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('user_created');
+    })
   });
 
   describe('hide_alert', function(){

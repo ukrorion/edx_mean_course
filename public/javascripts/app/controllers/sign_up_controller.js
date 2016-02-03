@@ -1,5 +1,5 @@
 angular.module('edx-app')
-  .controller('sign_up_controller', function($scope, $http) {
+  .controller('sign_up_controller', function($rootScope, $scope, $http) {
     $scope.show_alert = false;
 
     $scope.submit = function(){
@@ -11,6 +11,7 @@ angular.module('edx-app')
       }
       $http.post('/sign_up', form_data).then(
         function(data){
+          $rootScope.$broadcast('user_created');
           $scope.info = 'Form was submited!'
           $scope.show_alert = true;
         }, function(error){
