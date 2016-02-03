@@ -1,4 +1,4 @@
-var homeController = (function(){
+var HomeController = (function(){
   var index = function(req, res, next){
     res.render('home/index');
   }
@@ -8,4 +8,4 @@ var homeController = (function(){
   };
 })();
 
-module.exports = homeController;
+module.exports = HomeController;

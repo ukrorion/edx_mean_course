@@ -1,4 +1,4 @@
-describe('homeController', function() {
+describe('HomeController', function() {
   before(function(done) {
     done();
   });

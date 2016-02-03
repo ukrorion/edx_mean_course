@@ -9,5 +9,11 @@ module.exports = {
     articles : [],
     created_at: Date.now(),
     token: 'sjagjioaitopankddsafhdjfakdfljaskbfxnbJHDhskdhsbc'
+  },
+  post_user_data : {
+    email : 'test@test.com',
+    password : 'test_pass',
+    first_name : 'James',
+    last_name : 'Bond'
   }
 };

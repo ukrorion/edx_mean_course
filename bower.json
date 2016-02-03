@@ -26,7 +26,8 @@
     "angular-route": "~1.4.9",
     "angular-resource": "~1.4.9",
     "angular-sanitize": "~1.4.9",
-    "angular-mocks": "~1.4.9"
+    "angular-mocks": "~1.4.9",
+    "ngstorage": "~0.3.10"
   },
   "resolutions": {
     "angular": "1.4.9"
