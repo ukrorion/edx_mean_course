@@ -77,7 +77,7 @@ gulp.task('run_karma_tests', function (done) {
 gulp.task('all_tests', ['run_karma_tests'], function(done){
   gulp.
     src('./spec/**/*.js').
-    pipe(mocha()).
+    pipe(mocha({reporter: 'dot'})).
     on('error',function(error){
       errors.push(error);
       build_faild = true;

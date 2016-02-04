@@ -55,12 +55,12 @@ describe('UsersController', function() {
         send(user_data).
         end(function(error, res) {
           if (error) {
-            done(error);
-          } else {
-            expect(res.status).toEqual(200);
-            expect(res.body.error).toExist();
-            expect(res.body.error.errmsg).toInclude('duplicate key error index');
+            expect(error.status).toEqual(401);
+            expect(error.response.body.error).toExist();
+            expect(error.response.body.error.errmsg).toInclude('duplicate key error index');
             done();
+          } else {
+            done(res);
           }
         });
       });
