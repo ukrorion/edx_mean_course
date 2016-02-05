@@ -30,25 +30,6 @@ describe('Controller: SignUpController', function () {
       $httpBackend.flush();
       expect(scope.show_alert).toBe(true);
     });
-
-    it('should post data to server', function () {
-      scope.email = 'example@example.com';
-      scope.password = 'password';
-      scope.first_name = 'John';
-      scope.last_name = 'Dou';
-      req_handler.respond(200, '');
-      $httpBackend.expectPOST('/sign_up', form_data).respond(200, '');
-      scope.submit();
-      $httpBackend.flush();
-    });
-
-    it('should broadcast \'user_created\' event on success responce', function(){
-      req_handler.respond(200, '');
-      $httpBackend.expectPOST('/sign_up').respond(200, '');
-      scope.submit();
-      $httpBackend.flush();
-      expect(rootScope.$broadcast).toHaveBeenCalledWith('user_created');
-    })
   });
 
   describe('hide_alert', function(){

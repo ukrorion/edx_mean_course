@@ -22,6 +22,7 @@ module.exports = function(config) {
       '../vendor_lib/ngstorage/ngStorage.js',
       'app/app.js',
       'app/controllers/**/*.js',
+      'app/services/**/*.js',
       'app/spec/**/*.js'
     ],
 
