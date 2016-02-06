@@ -12,6 +12,19 @@ userSchema.path('role').validate(function(value){
 }, 'Role `{VALUE}` does not exist', 'not_exist');
 
 userSchema.pre('save', function(next){
+  var self = this;
+  User.findOne({email: this.email}, function(err, res){
+    if(err) next(err);
+    if(res) {
+      self.invalidate("email", "User Email must be unique")
+      next(new Error("User Email must be unique"));
+    } else {
+      next();
+    }
+  });
+});
+
+userSchema.pre('save', function(next){
   var user = this;
   if(!user.isModified('password'))
     next();
@@ -29,10 +42,10 @@ userSchema.pre('save', function(next){
   var user = this;
   if(!user.isNew) next();
   fs.readFile('test-user-cert.pem', function(err, cert) {
-    if(err) throw err;
+    if(err)  next(err);
     var token = jwt.sign({password: user.password, email: user.email}, cert);
     if(!token)
-      throw new Error('Token was not generated');
+      next(new Error('Token was not generated'));
     user.token = token;
     next();
   });

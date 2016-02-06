@@ -165,8 +165,8 @@ describe('User', function(){
       var user2 = new User(test_user);
       user1.save(function(err){
         user2.save(function(err){
-          expect(err.name).toBe('MongoError');
-          expect(err.message).toContain('uplicate key error index');
+          expect(err.name).toBe('Error');
+          expect(err.message).toContain('User Email must be unique');
           done();
         });
       });

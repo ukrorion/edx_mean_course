@@ -10,7 +10,7 @@ var UsersController = (function(){
     });
     user.save(function(error){
       if(error){
-        res.send('401', {error: error});
+        res.status(401).send({error: error.toString()});
       } else {
         res.set('authenticate', user.token);
         res.send({email: user.email, full_name : user.first_name + ' ' + user.last_name});

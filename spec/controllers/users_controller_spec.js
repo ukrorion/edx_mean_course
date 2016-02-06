@@ -55,9 +55,9 @@ describe('UsersController', function() {
         send(user_data).
         end(function(error, res) {
           if (error) {
-            expect(error.status).toEqual(401);
-            expect(error.response.body.error).toExist();
-            expect(error.response.body.error.errmsg).toInclude('duplicate key error index');
+            expect(res.status).toEqual(401);
+            expect(res.body.error).toExist();
+            expect(res.body.error).toInclude('User Email must be unique');
             done();
           } else {
             done(res);
